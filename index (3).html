@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Authenticity | Jbudduan Art Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #050505;
+            --bg-secondary: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #d1d1d1;
+            --accent-color: #c5a059;
+            --success-color: #10b981;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --text-primary: #111111;
+            --text-secondary: #4b5563;
+            --accent-color: #b38a3e;
+            --border-color: rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Cormorant Garamond', serif; }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .verified-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .verified-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+        }
+
+        .jbudduan-seal-mini {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #f3e4c4 0%, #c5a059 50%, #9e7d3d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            margin: 0 auto;
+        }
+
+        .loading-ring {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--border-color);
+            border-top: 2px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        #loading-view { display: flex; }
+        #verified-view { display: none; }
+
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="p-6 md:p-12">
+
+    <header class="text-center mb-12">
+        <div class="text-[10px] tracking-[0.5em] uppercase text-amber-500 font-semibold mb-2">Secure Verification</div>
+        <h1 class="serif text-3xl text-[var(--text-primary)]">Jbudduan Art Studio</h1>
+    </header>
+
+    <main class="max-w-lg mx-auto w-full flex-grow flex flex-col items-center justify-center">
+        
+        <div id="loading-view" class="flex-col items-center text-center">
+            <div class="loading-ring mb-6"></div>
+            <p class="text-sm tracking-widest uppercase opacity-60">Connecting to Provenance Registry...</p>
+        </div>
+
+        <div id="verified-view" class="w-full fade-in">
+            <div class="verified-card rounded-2xl p-8 shadow-2xl">
+                <div class="text-center mb-10">
+                    <div class="status-badge mb-6">
+                        <i class="fas fa-check-circle mr-2"></i> Official Authentic Work
+                    </div>
+                    
+                    <div class="jbudduan-seal-mini mb-6">
+                        <span class="serif text-3xl font-bold text-black/60">J</span>
+                    </div>
+                    
+                    <h2 class="serif text-4xl italic text-[var(--text-primary)] mb-2">Provenance Confirmed</h2>
+                    <p class="text-[10px] tracking-[0.3em] uppercase text-amber-500/80">Digital Certificate #JBUD-2026-X81</p>
+                </div>
+
+                <div class="space-y-6 border-t border-[var(--border-color)] pt-8">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="uppercase tracking-widest text-[var(--text-muted)]">Artist</span>
+                        <span class="font-semibold text-[var(--text-primary)] uppercase">Jbudduan Art Studio</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="uppercase tracking-widest text-[var(--text-muted)]">Work Type</span>
+                        <span class="font-semibold text-[var(--text-primary)]">Commissioned Digital Medium</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="uppercase tracking-widest text-[var(--text-muted)]">Creation Date</span>
+                        <span class="font-semibold text-[var(--text-primary)]">May 14, 2026</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="uppercase tracking-widest text-[var(--text-muted)]">Verification</span>
+                        <span class="text-emerald-500 font-bold uppercase flex items-center">
+                            <i class="fas fa-shield-alt mr-1.5"></i> Encrypted
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-[var(--border-color)] text-center">
+                    <p class="text-[11px] leading-relaxed italic text-[var(--text-secondary)] serif text-lg px-4">
+                        "This work is recorded in the Jbudduan Studio archives and is guaranteed as an original creation for the designated collector."
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="index.html" class="inline-flex items-center text-[10px] tracking-widest uppercase font-bold text-[var(--text-muted)] hover:text-amber-500 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Return to Collection
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-20 text-center">
+        <div class="w-8 h-[1px] bg-amber-500/30 mx-auto mb-6"></div>
+        <p class="text-[9px] tracking-[0.4em] uppercase opacity-40">© 2026 Jbudduan Art Studio • All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Simulate a secure database lookup delay
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('loading-view').style.display = 'none';
+                document.getElementById('verified-view').style.display = 'block';
+            }, 2500); // 2.5 second "verification" simulation
+        });
+
+        // Theme sync from system if needed (or default to dark)
+        const html = document.documentElement;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            // Uncomment if you want it to auto-switch based on phone settings
+            // html.setAttribute('data-theme', 'light');
+        }
+    </script>
+</body>
+</html>
